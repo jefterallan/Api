@@ -21,5 +21,21 @@ namespace ApiSample.Data.Models
             Gender = gender;
             BirthDate = birthDate;
         }
+
+        public Client(string? cpf, Gender gender, DateTime? birthDate, string name, string mobilePhone, Address address, string? email = null, string? phone = null) 
+            : base(name, mobilePhone, address, email, phone)
+        {
+            Cpf = cpf;
+            Gender = gender;
+            BirthDate = birthDate;
+        }
+
+        public Client(string? cpf, Gender gender, DateTime? birthDate, string name, string mobilePhone, ICollection<Address> address, string? email = null, string? phone = null)
+            : base(name, mobilePhone, address, email, phone)
+        {
+            Cpf = cpf;
+            Gender = gender;
+            BirthDate = birthDate;
+        }
     }
 }

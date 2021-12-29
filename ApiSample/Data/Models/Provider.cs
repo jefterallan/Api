@@ -26,5 +26,21 @@
             Cnpj = cnpj;
             OpeningDate = openingDate;
         }
+
+        public Provider(string corporateName, string? cnpj, DateTime? openingDate, string name, string mobilePhone, Address address, string? email = null, string? phone = null)
+            : base(name, mobilePhone, address, email, phone)
+        {
+            CorporateName = corporateName;
+            Cnpj = cnpj;
+            OpeningDate = openingDate;
+        }
+
+        public Provider(string corporateName, string? cnpj, DateTime? openingDate, string name, string mobilePhone, ICollection<Address> address, string? email = null, string? phone = null)
+            : base(name, mobilePhone, address, email, phone)
+        {
+            CorporateName = corporateName;
+            Cnpj = cnpj;
+            OpeningDate = openingDate;
+        }
     }
 }

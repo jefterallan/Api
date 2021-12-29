@@ -27,5 +27,12 @@ namespace ApiSample.Services.Dto
             Name = name;
             Group = type;
         }
+
+        public UserDto(string name, GroupDto group, string username, string password)
+            : base(username, password)
+        {
+            Name = name;
+            Group = group;
+        }
     }
 }

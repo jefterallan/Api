@@ -83,11 +83,11 @@ namespace ApiSample.Data.Seed
 
             var users = new User[]
             {
-                new User("Test1", group.First()),
-                new User("Test2", group.Take(2).Last()),
-                new User("Test3", group.Take(3).Last()),
-                new User("Test4", group.Take(4).Last()),
-                new User("Test5", group.Last())
+                new User("Test1", group.First(), "test1", "test1"),
+                new User("Test2", group.Take(2).Last(), "test2", "test2"),
+                new User("Test3", group.Take(3).Last(), "test3", "test3"),
+                new User("Test4", group.Take(4).Last(), "test4", "test4"),
+                new User("Test5", group.Last(), "test5", "test5")
             };
 
             context.Users.AddRange(users);
@@ -95,23 +95,25 @@ namespace ApiSample.Data.Seed
 
             var addresses = new Address[]
             {
-                new Address("test1", "1", "test1", "test1", 12345678, "test1"),
-                new Address("test2", "2", "test2", "test2", 12345678, "test2"),
-                new Address("test3", "3", "test3", "test3", 12345678, "test3"),
-                new Address("test4", "4", "test4", "test4", 12345678, "test4"),
-                new Address("test5", "5", "test5", "test5", 12345678, "test5")
+                new Address("test1", "1", "test1", State.AC, 12345678, "test1"),
+                new Address("test2", "2", "test2", State.AL, 12345678, "test2"),
+                new Address("test3", "3", "test3", State.AM, 12345678, "test3"),
+                new Address("test4", "4", "test4", State.AP, 12345678, "test4"),
+                new Address("test5", "5", "test5", State.BA, 12345678, "test5")
             };
 
             context.Addresses.AddRange(addresses);
             context.SaveChanges();
 
+            var address = context.Addresses.OrderBy(x => x.Id).ToList();
+
             var clients = new Client[]
             {
-                new Client("1", Gender.Male, DateTime.Now),
-                new Client("2", Gender.Male, DateTime.Now),
-                new Client("3", Gender.Female, DateTime.Now),
-                new Client("4", Gender.Female, DateTime.Now),
-                new Client("5", Gender.Other, DateTime.Now)
+                new Client("1", Gender.Male, DateTime.Now, "test1", "1234567890", address.First(), "test1@test.com", "12345"),
+                new Client("2", Gender.Male, DateTime.Now, "test2", "1234567890", address.Take(2).Last(), "test2@test.com", "12345"),
+                new Client("3", Gender.Female, DateTime.Now, "test3", "1234567890", address.Take(3).Last(), "test3@test.com", "12345"),
+                new Client("4", Gender.Female, DateTime.Now, "test4", "1234567890", address.Take(4).Last(), "test3@test.com", "12345"),
+                new Client("5", Gender.Other, DateTime.Now, "test5", "1234567890", address.Last(), "test5@test.com", "12345")
             };
 
             context.Clients.AddRange(clients);
@@ -119,11 +121,11 @@ namespace ApiSample.Data.Seed
 
             var providers = new Provider[]
             {
-                new Provider("test1", "1", DateTime.Now),
-                new Provider("test2", "2", DateTime.Now),
-                new Provider("test3", "3", DateTime.Now),
-                new Provider("test4", "4", DateTime.Now),
-                new Provider("test5", "5", DateTime.Now)
+                new Provider("test1", "1", DateTime.Now, "test6", "1234567890", address.First(), "test6@test.com", "12345"),
+                new Provider("test2", "2", DateTime.Now, "test7", "1234567890", address.Take(2).Last(), "test7@test.com", "12345"),
+                new Provider("test3", "3", DateTime.Now, "test8", "1234567890", address.Take(3).Last(), "test8@test.com", "12345"),
+                new Provider("test4", "4", DateTime.Now, "test9", "1234567890", address.Take(4).Last(), "test9@test.com", "12345"),
+                new Provider("test5", "5", DateTime.Now, "test10", "1234567890", address.Last(), "test10@test.com", "12345")
             };
 
             context.Providers.AddRange(providers);
@@ -161,11 +163,11 @@ namespace ApiSample.Data.Seed
 
             var paymentClients = new PaymentClient[]
             {
-                new PaymentClient(order.First()),
-                new PaymentClient(order.Take(2).Last()),
-                new PaymentClient(order.Take(3).Last()),
-                new PaymentClient(order.Take(4).Last()),
-                new PaymentClient(order.Last()),
+                new PaymentClient(order.First() ,PaymentType.Transfer, TransactionType.In, 1, 0, 1, 2),
+                new PaymentClient(order.Take(2).Last() ,PaymentType.PIX, TransactionType.In, 1, 0, 1, 2),
+                new PaymentClient(order.Take(3).Last() ,PaymentType.ForwardSale, TransactionType.In, 1, 0, 1, 2),
+                new PaymentClient(order.Take(4).Last() ,PaymentType.Debit, TransactionType.Out, 1, 0, 1, 2),
+                new PaymentClient(order.Last() ,PaymentType.Money, TransactionType.Out, 1, 0, 1, 2)
             };
 
             context.PaymentClients.AddRange(paymentClients);
@@ -175,11 +177,11 @@ namespace ApiSample.Data.Seed
 
             var paymentProviders = new PaymentProvider[]
             {
-                new PaymentProvider(0, invoice.First()),
-                new PaymentProvider(1, invoice.Take(2).Last()),
-                new PaymentProvider(2, invoice.Take(3).Last()),
-                new PaymentProvider(3, invoice.Take(4).Last()),
-                new PaymentProvider(4, invoice.Last()),
+                new PaymentProvider(0, invoice.First() ,PaymentType.Transfer, TransactionType.In, 1, 0, 1, 2),
+                new PaymentProvider(1, invoice.Take(2).Last() ,PaymentType.PIX, TransactionType.In, 1, 0, 1, 2),
+                new PaymentProvider(2, invoice.Take(3).Last() ,PaymentType.ForwardSale, TransactionType.In, 1, 0, 1, 2),
+                new PaymentProvider(3, invoice.Take(4).Last() ,PaymentType.Debit, TransactionType.Out, 1, 0, 1, 2),
+                new PaymentProvider(4, invoice.Last() ,PaymentType.Money, TransactionType.Out, 1, 0, 1, 2)
             };
 
             context.PaymentProviders.AddRange(paymentProviders);

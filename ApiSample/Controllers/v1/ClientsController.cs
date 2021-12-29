@@ -1,5 +1,6 @@
-﻿using ApiSample.Data.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ApiSample.Controllers.v1
 {
@@ -7,12 +8,12 @@ namespace ApiSample.Controllers.v1
     [ApiVersion("1")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [Produces("application/json")]
-    public class AddressesController : ControllerBase
+    public class ClientsController : ControllerBase
     {
         /// <summary>
-        /// Get all Addresses
+        /// Get all Clients
         /// </summary>
-        // GET: api/<AddressesController>
+        // GET: api/<ClientsController>
         [HttpGet]
         public IEnumerable<string> Get()
         {
@@ -20,9 +21,9 @@ namespace ApiSample.Controllers.v1
         }
 
         /// <summary>
-        /// Get an Address by Id.
+        /// Get a Client by Id.
         /// </summary>
-        // GET api/<AddressesController>/5
+        // GET api/<ClientsController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
@@ -30,27 +31,27 @@ namespace ApiSample.Controllers.v1
         }
 
         /// <summary>
-        /// Creates an Address.
+        /// Creates a Client.
         /// </summary>
-        // POST api/<AddressesController>
+        // POST api/<ClientsController>
         [HttpPost]
         public void Post([FromBody] string value)
         {
         }
 
         /// <summary>
-        /// Update an Address.
+        /// Update a Client.
         /// </summary>
-        // PUT api/<AddressesController>/5
+        // PUT api/<ClientsController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
         /// <summary>
-        /// Delete an Address.
+        /// Delete a Client.
         /// </summary>
-        // DELETE api/<AddressesController>/5
+        // DELETE api/<ClientsController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

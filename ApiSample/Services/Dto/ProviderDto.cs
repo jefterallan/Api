@@ -38,5 +38,21 @@ namespace ApiSample.Services.Dto
             Cnpj = cnpj;
             OpeningDate = openingDate;
         }
+
+        public ProviderDto(string corporateName, string? cnpj, DateTime? openingDate, string name, string mobilePhone, AddressDto address, string? email = null, string? phone = null)
+            : base(name, mobilePhone, address, email, phone)
+        {
+            CorporateName = corporateName;
+            Cnpj = cnpj;
+            OpeningDate = openingDate;
+        }
+
+        public ProviderDto(string corporateName, string? cnpj, DateTime? openingDate, string name, string mobilePhone, ICollection<AddressDto> address, string? email = null, string? phone = null)
+            : base(name, mobilePhone, address, email, phone)
+        {
+            CorporateName = corporateName;
+            Cnpj = cnpj;
+            OpeningDate = openingDate;
+        }
     }
 }

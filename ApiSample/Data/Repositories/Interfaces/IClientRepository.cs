@@ -1,6 +1,14 @@
-﻿namespace ApiSample.Data.Repositories.Interfaces
+﻿using ApiSample.Data.Models;
+
+namespace ApiSample.Data.Repositories.Interfaces
 {
-    public interface IClientRepository
+    public interface IClientRepository<T> where T : Model
     {
+        ICollection<T> Get();
+        IAsyncEnumerable<T> Create(T entity);
+        IAsyncEnumerable<T> Edit(T entity);
+        IAsyncEnumerable<T?> Details(Guid id);
+        IAsyncEnumerable<bool> Delete(Guid id);
+        IAsyncEnumerable<bool> Delete(T entity);
     }
 }

@@ -17,5 +17,12 @@
             Name = name;
             Group = group;
         }
+
+        public User(string name, Group group, string username, string password)
+            : base(username, password)
+        {
+            Name = name;
+            Group = group;
+        }
     }
 }

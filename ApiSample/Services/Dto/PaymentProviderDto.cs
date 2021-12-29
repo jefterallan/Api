@@ -1,4 +1,5 @@
 ﻿using ApiSample.Data.Models;
+using ApiSample.Services.Dto.Enum;
 
 namespace ApiSample.Services.Dto
 {
@@ -23,6 +24,13 @@ namespace ApiSample.Services.Dto
         }
 
         public PaymentProviderDto(decimal tax, InvoiceDto invoice)
+        {
+            Tax = tax;
+            Invoice = invoice;
+        }
+
+        public PaymentProviderDto(decimal tax, InvoiceDto invoice, PaymentTypeDto paymentType, TransactionTypeDto transactionType, decimal total, decimal discount, decimal others, decimal totalValue)
+            : base(paymentType, transactionType, total, discount, others, totalValue)
         {
             Tax = tax;
             Invoice = invoice;

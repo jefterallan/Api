@@ -33,5 +33,21 @@ namespace ApiSample.Services.Dto
             Gender = gender;
             BirthDate = birthDate;
         }
+
+        public ClientDto(string? cpf, GenderDto gender, DateTime? birthDate, string name, string mobilePhone, AddressDto address, string? email = null, string? phone = null)
+            : base(name, mobilePhone, address, email, phone)
+        {
+            Cpf = cpf;
+            Gender = gender;
+            BirthDate = birthDate;
+        }
+
+        public ClientDto(string? cpf, GenderDto gender, DateTime? birthDate, string name, string mobilePhone, ICollection<AddressDto> address, string? email = null, string? phone = null)
+            : base(name, mobilePhone, address, email, phone)
+        {
+            Cpf = cpf;
+            Gender = gender;
+            BirthDate = birthDate;
+        }
     }
 }
