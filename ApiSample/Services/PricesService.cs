@@ -1,16 +1,16 @@
 ﻿using ApiSample.Data.Models;
-using ApiSample.Data.Repositories;
+using ApiSample.Data.Repositories.Interfaces;
 using ApiSample.Services.Interfaces;
 
 namespace ApiSample.Services
 {
     public class PricesService : Service<PricesService>, IPricesService
     {
-        private readonly PricesRepository PricesRepository;
+        private readonly IPricesRepository PricesRepository;
 
         public PricesService(INotifier notifier,
             ILogger<PricesService> logger,
-            PricesRepository pricesRepository)
+            IPricesRepository pricesRepository)
             : base(notifier, logger)
         {
             PricesRepository = pricesRepository;

@@ -1,15 +1,16 @@
 ﻿using ApiSample.Data.Models;
-using ApiSample.Data.Repositories;
+using ApiSample.Data.Repositories.Interfaces;
 using ApiSample.Services.Interfaces;
 
 namespace ApiSample.Services
 {
     public class AddressesService : Service<AddressesService>, IAddressesService
     {
-        private readonly AddressesRepository AddressesRepository;
+        private readonly IAddressesRepository AddressesRepository;
 
         public AddressesService(INotifier notifier,
-            ILogger<AddressesService> logger, AddressesRepository addressesRepository)
+            ILogger<AddressesService> logger,
+            IAddressesRepository addressesRepository)
             : base(notifier, logger)
         {
             AddressesRepository = addressesRepository;

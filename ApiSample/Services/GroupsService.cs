@@ -9,7 +9,8 @@ namespace ApiSample.Services
         private readonly IGroupsRepository GroupsRepository;
 
         public GroupsService(INotifier notifier,
-            ILogger<GroupsService> logger, IGroupsRepository groupsRepository)
+            ILogger<GroupsService> logger,
+            IGroupsRepository groupsRepository)
             : base(notifier, logger)
         {
             GroupsRepository = groupsRepository;

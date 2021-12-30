@@ -9,7 +9,8 @@ namespace ApiSample.Services
         private readonly IBrandsRepository BrandsRepository;
 
         public BrandsService(INotifier notifier,
-            ILogger<BrandsService> logger, IBrandsRepository brandsRepository)
+            ILogger<BrandsService> logger,
+            IBrandsRepository brandsRepository)
             : base(notifier, logger)
         {
             BrandsRepository = brandsRepository;
