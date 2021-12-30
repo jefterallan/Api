@@ -1,5 +1,5 @@
-﻿using ApiSample.Services.Interfaces;
-using ApiSample.Services.Notify;
+﻿using ApiSample.Services.Dto;
+using ApiSample.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
@@ -35,7 +35,7 @@ namespace ApiSample.Controllers.v1
 
         protected void NotifyError(string errorMsg)
         {
-            _notifier.Handle(new Notification(errorMsg));
+            _notifier.Handle(new NotificationsDto(errorMsg));
         }
 
         protected ActionResult CustomResponse(ModelStateDictionary modelState)
@@ -52,15 +52,15 @@ namespace ApiSample.Controllers.v1
         {
             if (ValidOperation())
             {
-                return Ok(new Response(true, result));
+                return Ok(new NotificationResponseDto(true, result));
             }
 
             var errorsFound = _notifier.GetNotifications().Select(x => x.Message);
 
             foreach (var error in errorsFound)
-                _logger.LogWarning(error);
+                _logger.LogWarning(message: error);
 
-            return BadRequest(new Response(false, errorsFound));
+            return BadRequest(new NotificationResponseDto(false, errorsFound));
         }
     }
 }

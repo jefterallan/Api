@@ -1,4 +1,4 @@
-﻿using ApiSample.Data.Models;
+﻿using ApiSample.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiSample.Controllers.v1
@@ -7,8 +7,18 @@ namespace ApiSample.Controllers.v1
     [ApiVersion("1")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [Produces("application/json")]
-    public class AddressesController : ControllerBase
+    public class AddressesController : ControllerMain
     {
+        private readonly IAddressesService AddressesService;
+
+        public AddressesController(INotifier notifier,
+            ILogger<AddressesController> logger,
+            IAddressesService addressesService)
+            : base(notifier, logger)
+        {
+            AddressesService = addressesService;
+        }
+
         /// <summary>
         /// Get all Addresses
         /// </summary>

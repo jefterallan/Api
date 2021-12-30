@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿using ApiSample.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ApiSample.Controllers.v1
 {
@@ -8,8 +7,18 @@ namespace ApiSample.Controllers.v1
     [ApiVersion("1")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [Produces("application/json")]
-    public class ClientsController : ControllerBase
+    public class ClientsController : ControllerMain
     {
+        private readonly IClientsService ClientsService;
+
+        public ClientsController(INotifier notifier,
+            ILogger<ClientsController> logger,
+            IClientsService clientsService)
+            : base(notifier, logger)
+        {
+            ClientsService = clientsService;
+        }
+
         /// <summary>
         /// Get all Clients
         /// </summary>

@@ -9,35 +9,35 @@ namespace ApiSample.Data
         {
         }
 
-        public DbSet<Address> Addresses { get; set; } = null!;
-        public DbSet<Brand> Brands { get; set; } = null!;
-        public DbSet<Client> Clients { get; set; } = null!;
-        public DbSet<Group> Groups { get; set; } = null!;
-        public DbSet<Invoice> Invoices { get; set; } = null!;
-        public DbSet<Order> Orders { get; set; } = null!;
-        public DbSet<PaymentClient> PaymentClients { get; set; } = null!;
-        public DbSet<PaymentProvider> PaymentProviders { get; set; } = null!;
-        public DbSet<Price> Prices { get; set; } = null!;
-        public DbSet<Product> Products { get; set; } = null!;
-        public DbSet<ProductPrice> ProductPrices { get; set; } = null!;
-        public DbSet<Provider> Providers { get; set; } = null!;
-        public DbSet<User> Users { get; set; } = null!;
+        public DbSet<Addresses> Addresses { get; set; } = null!;
+        public DbSet<Brands> Brands { get; set; } = null!;
+        public DbSet<Clients> Clients { get; set; } = null!;
+        public DbSet<Groups> Groups { get; set; } = null!;
+        public DbSet<Invoices> Invoices { get; set; } = null!;
+        public DbSet<Orders> Orders { get; set; } = null!;
+        public DbSet<PaymentClients> PaymentClients { get; set; } = null!;
+        public DbSet<PaymentProviders> PaymentProviders { get; set; } = null!;
+        public DbSet<Prices> Prices { get; set; } = null!;
+        public DbSet<Products> Products { get; set; } = null!;
+        public DbSet<ProductPrices> ProductPrices { get; set; } = null!;
+        public DbSet<Providers> Providers { get; set; } = null!;
+        public DbSet<Users> Users { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Address>().ToTable("Addresses");
-            modelBuilder.Entity<Brand>().ToTable("Brands");
-            modelBuilder.Entity<Client>().ToTable("Clients");
-            modelBuilder.Entity<Group>().ToTable("Groups");
-            modelBuilder.Entity<Invoice>().ToTable("Invoices");
-            modelBuilder.Entity<Order>().ToTable("Orders");
-            modelBuilder.Entity<PaymentClient>().ToTable("PaymentClients");
-            modelBuilder.Entity<PaymentProvider>().ToTable("PaymentProviders");
-            modelBuilder.Entity<Price>().ToTable("Prices");
-            modelBuilder.Entity<Product>().ToTable("Products");
-            modelBuilder.Entity<ProductPrice>().ToTable("ProductPrices");
-            modelBuilder.Entity<Provider>().ToTable("Providers");
-            modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<Addresses>().ToTable("Addresses");
+            modelBuilder.Entity<Brands>().ToTable("Brands");
+            modelBuilder.Entity<Clients>().ToTable("Clients");
+            modelBuilder.Entity<Groups>().ToTable("Groups");
+            modelBuilder.Entity<Invoices>().ToTable("Invoices");
+            modelBuilder.Entity<Orders>().ToTable("Orders");
+            modelBuilder.Entity<PaymentClients>().ToTable("PaymentClients");
+            modelBuilder.Entity<PaymentProviders>().ToTable("PaymentProviders");
+            modelBuilder.Entity<Prices>().ToTable("Prices");
+            modelBuilder.Entity<Products>().ToTable("Products");
+            modelBuilder.Entity<ProductPrices>().ToTable("ProductPrices");
+            modelBuilder.Entity<Providers>().ToTable("Providers");
+            modelBuilder.Entity<Users>().ToTable("Users");
         }
     }
 }

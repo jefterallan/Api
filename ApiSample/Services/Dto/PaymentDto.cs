@@ -6,8 +6,8 @@ namespace ApiSample.Services.Dto
 {
     public class PaymentDto : ModelDto
     {
-        public PaymentTypeDto PaymentType { get; set; }
-        public TransactionTypeDto TransactionType { get; set; }
+        public PaymentTypesDto PaymentType { get; set; }
+        public TransactionTypesDto TransactionType { get; set; }
         public decimal Total { get; set; }
         public decimal Discount { get; set; }
         public decimal Others { get; set; }
@@ -17,8 +17,8 @@ namespace ApiSample.Services.Dto
         {
             return new()
             {
-                PaymentType = (PaymentType)payment.PaymentType,
-                TransactionType = (TransactionType)payment.TransactionType,
+                PaymentType = (PaymentTypes)payment.PaymentType,
+                TransactionType = (TransactionTypes)payment.TransactionType,
                 Total = payment.Total,
                 Discount = payment.Discount,
                 Others = payment.Others,
@@ -28,15 +28,15 @@ namespace ApiSample.Services.Dto
 
         public PaymentDto()
         {
-            PaymentType = PaymentTypeDto.Money;
-            TransactionType = TransactionTypeDto.In;
+            PaymentType = PaymentTypesDto.Money;
+            TransactionType = TransactionTypesDto.In;
             Total = 0;
             Discount = 0;
             Others = 0;
             TotalValue = 0;
         }
 
-        public PaymentDto(PaymentTypeDto paymentType, TransactionTypeDto transactionType, decimal total, decimal discount, decimal others, decimal totalValue)
+        public PaymentDto(PaymentTypesDto paymentType, TransactionTypesDto transactionType, decimal total, decimal discount, decimal others, decimal totalValue)
         {
             PaymentType = paymentType;
             TransactionType = transactionType;

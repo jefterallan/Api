@@ -10,6 +10,5 @@ namespace ApiSample.Data.Repositories.Interfaces
         IAsyncEnumerable<T?> Details(Guid id);
         IAsyncEnumerable<bool> Delete(Guid id);
         IAsyncEnumerable<bool> Delete(T entity);
-
     }
 }

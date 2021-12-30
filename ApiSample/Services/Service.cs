@@ -1,17 +1,20 @@
-﻿using ApiSample.Services.Interfaces;
-using ApiSample.Services.Notify;
+﻿using ApiSample.Data.Models;
+using ApiSample.Services.Dto;
+using ApiSample.Services.Interfaces;
 using FluentValidation;
 using FluentValidation.Results;
 
 namespace ApiSample.Services
 {
-    public abstract class Service
+    public abstract class Service<T> where T : class
     {
-        private readonly INotifier _notifier;
+        protected ILogger<T> Logger { get; set; }
+        private readonly INotifier Notifier;
 
-        protected Service(INotifier notifier)
+        protected Service(INotifier notifier, ILogger<T> logger)
         {
-            _notifier = notifier;
+            Notifier = notifier;
+            Logger = logger;
         }
 
         protected void Notify(ValidationResult validationResult)
@@ -22,7 +25,7 @@ namespace ApiSample.Services
 
         protected void Notify(string message)
         {
-            _notifier.Handle(new Notification(message));
+            Notifier.Handle(new NotificationsDto(message));
         }
 
         protected bool ValidateModel<TV, TE>(TV validation, TE entity) where TV : AbstractValidator<TE> where TE : class

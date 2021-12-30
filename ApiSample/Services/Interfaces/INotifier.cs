@@ -1,11 +1,11 @@
-﻿using ApiSample.Services.Notify;
+﻿using ApiSample.Services.Dto;
 
 namespace ApiSample.Services.Interfaces
 {
     public interface INotifier
     {
         bool HasNotification();
-        List<Notification> GetNotifications();
-        void Handle(Notification notification);
+        List<NotificationsDto> GetNotifications();
+        void Handle(NotificationsDto notificationDto);
     }
 }

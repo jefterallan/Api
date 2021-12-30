@@ -13,10 +13,10 @@ namespace ApiSample.Helpers
 {
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
-        private readonly IUserService UserService;
+        private readonly IUsersService UserService;
         
         public BasicAuthenticationHandler(
-            IUserService userService,
+            IUsersService userService,
             IOptionsMonitor<AuthenticationSchemeOptions> options,
             ILoggerFactory logger,
             UrlEncoder encoder,
@@ -36,7 +36,7 @@ namespace ApiSample.Helpers
             if (!Request.Headers.ContainsKey("Authorization"))
                 return AuthenticateResult.Fail("Missing Authorization Header");
             
-            User user;
+            Users user;
 
             try
             {

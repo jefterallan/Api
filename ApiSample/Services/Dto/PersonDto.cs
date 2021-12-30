@@ -9,7 +9,7 @@ namespace ApiSample.Services.Dto
         public string? Phone { get; set; }
         public string MobilePhone { get; set; }
 
-        public ICollection<AddressDto> Address { get; set; }
+        public ICollection<AddressesDto> Address { get; set; }
 
         public static implicit operator Person(PersonDto person)
         {
@@ -19,7 +19,7 @@ namespace ApiSample.Services.Dto
                 Email = person.Email,
                 Phone = person.Phone,
                 MobilePhone = person.MobilePhone,
-                Address = person.Address.Select<AddressDto, Address>(x => x).ToList()
+                Address = person.Address.Select<AddressesDto, Addresses>(x => x).ToList()
             };
         }
 
@@ -29,19 +29,19 @@ namespace ApiSample.Services.Dto
             Email = string.Empty;
             Phone = string.Empty;
             MobilePhone = string.Empty;
-            Address = new List<AddressDto>();
+            Address = new List<AddressesDto>();
         }
 
-        public PersonDto(string name, string mobilePhone, AddressDto address, string? email = null, string? phone = null)
+        public PersonDto(string name, string mobilePhone, AddressesDto address, string? email = null, string? phone = null)
         {
             Name = name;
             MobilePhone = mobilePhone;
-            Address = new List<AddressDto>() { address };
+            Address = new List<AddressesDto>() { address };
             Email = email ?? string.Empty;
             Phone = phone ?? string.Empty;
         }
 
-        public PersonDto(string name, string mobilePhone, ICollection<AddressDto> address, string? email = null, string? phone = null)
+        public PersonDto(string name, string mobilePhone, ICollection<AddressesDto> address, string? email = null, string? phone = null)
         {
             Name = name;
             MobilePhone = mobilePhone;
