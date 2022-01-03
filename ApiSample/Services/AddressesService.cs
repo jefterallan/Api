@@ -1,6 +1,7 @@
 ﻿using ApiSample.Data.Models;
 using ApiSample.Data.Repositories.Interfaces;
 using ApiSample.Services.Interfaces;
+using AutoMapper;
 
 namespace ApiSample.Services
 {
@@ -10,8 +11,9 @@ namespace ApiSample.Services
 
         public AddressesService(INotifier notifier,
             ILogger<AddressesService> logger,
+            IMapper mapper,
             IAddressesRepository addressesRepository)
-            : base(notifier, logger)
+            : base(notifier, logger, mapper)
         {
             AddressesRepository = addressesRepository;
         }
@@ -31,9 +33,9 @@ namespace ApiSample.Services
             throw new NotImplementedException();
         }
 
-        public Task<Addresses?> Details(Guid id)
+        public async Task<Addresses?> Details(Guid id)
         {
-            throw new NotImplementedException();
+            return await AddressesRepository.Details(id);
         }
 
         public Task<Addresses> Edit(Addresses address)
@@ -41,9 +43,9 @@ namespace ApiSample.Services
             throw new NotImplementedException();
         }
 
-        public Task<ICollection<Addresses>> Get()
+        public async Task<IList<Addresses>> Get()
         {
-            throw new NotImplementedException();
+            return await AddressesRepository.Get();
         }
     }
 }

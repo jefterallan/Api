@@ -4,7 +4,7 @@ namespace ApiSample.Services.Interfaces
 {
     public interface IPricesService
     {
-        Task<ICollection<Prices>> Get();
+        Task<IList<Prices>> Get();
         Task<Prices> Create(Prices price);
         Task<Prices> Edit(Prices price);
         Task<Prices?> Details(Guid id);

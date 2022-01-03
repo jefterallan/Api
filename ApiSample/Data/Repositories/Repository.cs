@@ -14,58 +14,51 @@ namespace ApiSample.Data.Repositories
             Context = context;
         }
 
-        public virtual ICollection<T> Get()
+        public virtual async Task<IList<T>> Get()
         {
-            return Search.ToList();
+            return await Context.Set<T>().ToListAsync();
         }
 
-        public virtual async IAsyncEnumerable<T> Create(T entity)
+        public virtual async Task<T> Create(T entity)
         {
             await Context.Set<T>().AddAsync(entity);
             await Context.SaveChangesAsync();
 
-            yield return entity;
+            return entity;
         }
 
-        public virtual async IAsyncEnumerable<T> Edit(T entity)
+        public virtual async Task<T> Edit(T entity)
         {
             Context.Set<T>().Update(entity);
             await Context.SaveChangesAsync();
 
-            yield return entity;
+            return entity;
         }
 
-        public virtual async IAsyncEnumerable<T?> Details(Guid id)
+        public virtual async Task<T?> Details(Guid id)
         {
-            yield return await Search.FirstOrDefaultAsync(c => c.Id == id);
+            return await Context.Set<T>().FindAsync(id);
         }
 
-        public virtual async IAsyncEnumerable<bool> Delete(Guid id)
+        public virtual async Task<bool> Delete(Guid id)
         {
-            var entity = await Search.FirstOrDefaultAsync(c => c.Id == id);
+            var entity = await Context.Set<T>().FirstOrDefaultAsync(c => c.Id == id);
 
-            if (entity != null)
-            {
-                Context.Set<T>().Remove(entity);
-                await Context.SaveChangesAsync();
+            if (entity == null)
+                return false;
+            
+            Context.Set<T>().Remove(entity);
+            await Context.SaveChangesAsync();
 
-                yield return true;
-            }
-
-            yield return false;
+            return true;            
         }
 
-        public virtual async IAsyncEnumerable<bool> Delete(T entity)
+        public virtual async Task<bool> Delete(T entity)
         {
             Context.Set<T>().Remove(entity);
             await Context.SaveChangesAsync();
 
-            yield return true;
-        }
-
-        public virtual IQueryable<T> Search
-        {
-            get { return from c in Context.Set<T>() select c; }
+            return true;
         }
 
         public void Dispose()

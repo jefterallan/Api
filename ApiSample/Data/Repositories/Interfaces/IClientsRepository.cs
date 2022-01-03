@@ -4,11 +4,11 @@ namespace ApiSample.Data.Repositories.Interfaces
 {
     public interface IClientsRepository
     {
-        ICollection<Clients> Get();
-        IAsyncEnumerable<Clients> Create(Clients entity);
-        IAsyncEnumerable<Clients> Edit(Clients entity);
-        IAsyncEnumerable<Clients?> Details(Guid id);
-        IAsyncEnumerable<bool> Delete(Guid id);
-        IAsyncEnumerable<bool> Delete(Clients entity);
+        Task<IList<Clients>> Get();
+        Task<Clients> Create(Clients entity);
+        Task<Clients> Edit(Clients entity);
+        Task<Clients?> Details(Guid id);
+        Task<bool> Delete(Guid id);
+        Task<bool> Delete(Clients entity);
     }
 }

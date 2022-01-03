@@ -1,6 +1,6 @@
-﻿using ApiSample.Data.Models;
-using ApiSample.Services.Dto;
+﻿using ApiSample.Services.Dto;
 using ApiSample.Services.Interfaces;
+using AutoMapper;
 using FluentValidation;
 using FluentValidation.Results;
 
@@ -8,13 +8,15 @@ namespace ApiSample.Services
 {
     public abstract class Service<T> where T : class
     {
-        protected ILogger<T> Logger { get; set; }
         private readonly INotifier Notifier;
+        protected ILogger<T> Logger { get; set; }
+        protected IMapper Mapper { get; set; }
 
-        protected Service(INotifier notifier, ILogger<T> logger)
+        protected Service(INotifier notifier, ILogger<T> logger, IMapper mapper)
         {
             Notifier = notifier;
             Logger = logger;
+            Mapper = mapper;
         }
 
         protected void Notify(ValidationResult validationResult)

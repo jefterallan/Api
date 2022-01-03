@@ -1,4 +1,6 @@
-﻿using ApiSample.Services.Interfaces;
+﻿using ApiSample.Services.Dto;
+using ApiSample.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiSample.Controllers.v1
@@ -24,19 +26,30 @@ namespace ApiSample.Controllers.v1
         /// </summary>
         // GET: api/<AddressesController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        [Route("Get")]
+        public async Task<ActionResult<IList<AddressesDto>>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var result = await AddressesService.Get();
+
+            return CustomResponse(result);
         }
 
         /// <summary>
         /// Get an Address by Id.
         /// </summary>
         // GET api/<AddressesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet]
+        [Route("Details")]
+        //[Authorize(Roles = "admin")]
+        //[AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<ActionResult<AddressesDto>> Details(Guid id)
         {
-            return "value";
+            var result = await AddressesService.Details(id);
+
+            return CustomResponse(result);
         }
 
         /// <summary>
@@ -44,26 +57,50 @@ namespace ApiSample.Controllers.v1
         /// </summary>
         // POST api/<AddressesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        [Route("Create")]
+        //[Authorize(Roles = "admin")]
+        //[AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<ActionResult<AddressesDto>> Create(AddressesDto addresses)
         {
+            if (!ModelState.IsValid)
+                return CustomResponse(ModelState);
+
+            throw new NotImplementedException();
         }
 
         /// <summary>
         /// Update an Address.
         /// </summary>
         // PUT api/<AddressesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        [Route("Edit")]
+        //[Authorize(Roles = "admin")]
+        //[AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<ActionResult<AddressesDto>> Edit(AddressesDto addresses)
         {
+            throw new NotImplementedException();
         }
 
         /// <summary>
         /// Delete an Address.
         /// </summary>
         // DELETE api/<AddressesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        [Route("Delete")]
+        //[Authorize(Roles = "admin")]
+        //[AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<ActionResult<bool>> Delete(Guid id)
         {
+            throw new NotImplementedException();
         }
     }
 }

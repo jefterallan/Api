@@ -4,7 +4,7 @@ namespace ApiSample.Services.Interfaces
 {
     public interface IBrandsService
     {
-        Task<ICollection<Brands>> Get();
+        Task<IList<Brands>> Get();
         Task<Brands> Create(Brands brand);
         Task<Brands> Edit(Brands brand);
         Task<Brands?> Details(Guid id);

@@ -4,7 +4,7 @@ namespace ApiSample.Services.Interfaces
 {
     public interface IInvoicesService
     {
-        Task<ICollection<Invoices>> Get();
+        Task<IList<Invoices>> Get();
         Task<Invoices> Create(Invoices invoice);
         Task<Invoices> Edit(Invoices invoice);
         Task<Invoices?> Details(Guid id);

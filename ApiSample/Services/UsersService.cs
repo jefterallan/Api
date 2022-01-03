@@ -2,6 +2,7 @@
 using ApiSample.Data.Repositories.Interfaces;
 using ApiSample.Services.Dto;
 using ApiSample.Services.Interfaces;
+using AutoMapper;
 
 namespace ApiSample.Services
 {
@@ -11,8 +12,9 @@ namespace ApiSample.Services
 
         public UsersService(INotifier notifier,
             ILogger<UsersService> logger,
+            IMapper mapper,
             IUsersRepository usersRepository)
-            : base(notifier, logger)
+            : base(notifier, logger, mapper)
         {
             UsersRepository = usersRepository;
         }
@@ -47,7 +49,7 @@ namespace ApiSample.Services
             throw new NotImplementedException();
         }
 
-        public Task<ICollection<Users>> Get()
+        public Task<IList<Users>> Get()
         {
             throw new NotImplementedException();
         }

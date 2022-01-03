@@ -4,6 +4,7 @@ using ApiSample.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiSample.Migrations
 {
     [DbContext(typeof(ApiSampleContext))]
-    partial class ApiSampleContextModelSnapshot : ModelSnapshot
+    [Migration("20211230180047_changing_type_of_field_from_addresses")]
+    partial class changing_type_of_field_from_addresses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

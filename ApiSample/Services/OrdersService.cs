@@ -1,6 +1,7 @@
 ﻿using ApiSample.Data.Models;
 using ApiSample.Data.Repositories.Interfaces;
 using ApiSample.Services.Interfaces;
+using AutoMapper;
 
 namespace ApiSample.Services
 {
@@ -10,8 +11,9 @@ namespace ApiSample.Services
 
         public OrdersService(INotifier notifier,
             ILogger<OrdersService> logger,
+            IMapper mapper,
             IOrdersRepository ordersRepository)
-            : base(notifier, logger)
+            : base(notifier, logger, mapper)
         {
             OrdersRepository = ordersRepository;
         }
@@ -41,7 +43,7 @@ namespace ApiSample.Services
             throw new NotImplementedException();
         }
 
-        public Task<ICollection<Orders>> Get()
+        public Task<IList<Orders>> Get()
         {
             throw new NotImplementedException();
         }

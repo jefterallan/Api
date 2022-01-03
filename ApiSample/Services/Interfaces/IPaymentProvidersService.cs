@@ -4,7 +4,7 @@ namespace ApiSample.Services.Interfaces
 {
     public interface IPaymentProvidersService
     {
-        Task<ICollection<PaymentProviders>> Get();
+        Task<IList<PaymentProviders>> Get();
         Task<PaymentProviders> Create(PaymentProviders paymentProvider);
         Task<PaymentProviders> Edit(PaymentProviders paymentProvider);
         Task<PaymentProviders?> Details(Guid id);

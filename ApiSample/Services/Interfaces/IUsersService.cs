@@ -6,7 +6,7 @@ namespace ApiSample.Services.Interfaces
     public interface IUsersService
     {
         Task<Users> FindApiCredentials(CredentialDto credential);
-        Task<ICollection<Users>> Get();
+        Task<IList<Users>> Get();
         Task<Users> Create(Users user);
         Task<Users> Edit(Users user);
         Task<Users?> Details(Guid id);
