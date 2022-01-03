@@ -1,9 +1,8 @@
-﻿using ApiSample.Data.Models;
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace ApiSample.Services.Dto.Validations
 {
-    public class Validation<T> : AbstractValidator<T> where T : Model
+    public class Validation<T> : AbstractValidator<T> where T : ModelDto
     {
         public Validation()
         {

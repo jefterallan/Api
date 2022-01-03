@@ -10,8 +10,8 @@
         public decimal TotalValue { get; set; }
         public DateTime Date { get; set; }
 
-        public Providers Provider { get; set; }
-        public ICollection<Products> Product { get; set; }
+        public virtual Providers Provider { get; set; }
+        public virtual ICollection<Products> Product { get; set; }
 
         public Invoices()
         {

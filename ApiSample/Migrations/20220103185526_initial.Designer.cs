@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiSample.Migrations
 {
     [DbContext(typeof(ApiSampleContext))]
-    [Migration("20211230180047_changing_type_of_field_from_addresses")]
-    partial class changing_type_of_field_from_addresses
+    [Migration("20220103185526_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

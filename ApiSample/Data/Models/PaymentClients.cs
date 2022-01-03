@@ -4,7 +4,7 @@ namespace ApiSample.Data.Models
 {
     public class PaymentClients : Payment
     {
-        public Orders Order { get; set; }
+        public virtual Orders Order { get; set; }
 
         public PaymentClients()
         {

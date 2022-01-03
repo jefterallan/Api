@@ -5,7 +5,7 @@ namespace ApiSample.Data.Models
     public class PaymentProviders : Payment
     {
         public decimal Tax { get; set; } = 0;
-        public Invoices Invoice { get; set; }
+        public virtual Invoices Invoice { get; set; }
 
         public PaymentProviders()
         {

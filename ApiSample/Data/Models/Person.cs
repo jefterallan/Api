@@ -7,7 +7,7 @@
         public string? Phone { get; set; }
         public string MobilePhone { get; set; }
         
-        public ICollection<Addresses> Address { get; set; }
+        public virtual ICollection<Addresses> Address { get; set; }
 
         public Person()
         {

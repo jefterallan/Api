@@ -9,8 +9,8 @@
         public decimal TotalValue { get; set; }
         public DateTime Date { get; set; }
 
-        public Clients Client { get; set; }
-        public ICollection<Products> Product { get; set; }
+        public virtual Clients Client { get; set; }
+        public virtual ICollection<Products> Product { get; set; }
 
         public Orders()
         {

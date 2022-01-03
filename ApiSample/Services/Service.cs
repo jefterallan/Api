@@ -27,6 +27,7 @@ namespace ApiSample.Services
 
         protected void Notify(string message)
         {
+            Logger.LogWarning(message);
             Notifier.Handle(new NotificationsDto(message));
         }
 

@@ -10,5 +10,6 @@ namespace ApiSample.Data.Repositories.Interfaces
         Task<Users?> Details(Guid id);
         Task<bool> Delete(Guid id);
         Task<bool> Delete(Users entity);
+        Task<Users?> FindApiCredentials(Credential credential);
     }
 }

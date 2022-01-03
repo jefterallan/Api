@@ -7,7 +7,7 @@
         public DateTime InitialDate { get; set; }
         public DateTime FinalDate { get; set; }
 
-        public ICollection<ProductPrices> ProductPrice { get; set;}
+        public virtual ICollection<ProductPrices> ProductPrice { get; set;}
 
         public Prices()
         {

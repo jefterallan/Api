@@ -1,14 +1,14 @@
-﻿using ApiSample.Data.Models;
+﻿using ApiSample.Services.Dto;
 
 namespace ApiSample.Services.Interfaces
 {
     public interface IAddressesService
     {
-        Task<IList<Addresses>> Get();
-        Task<Addresses> Create(Addresses address);
-        Task<Addresses> Edit(Addresses address);
-        Task<Addresses?> Details(Guid id);
+        Task<IList<AddressesDto>> Get();
+        Task<AddressesDto> Create(AddressesDto address);
+        Task<AddressesDto> Edit(AddressesDto address);
+        Task<AddressesDto?> Details(Guid id);
         Task<bool> Delete(Guid id);
-        Task<bool> Delete(Addresses address);
+        Task<bool> Delete(AddressesDto address);
     }
 }

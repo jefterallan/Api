@@ -5,12 +5,12 @@ namespace ApiSample.Services.Interfaces
 {
     public interface IUsersService
     {
-        Task<Users> FindApiCredentials(CredentialDto credential);
-        Task<IList<Users>> Get();
-        Task<Users> Create(Users user);
-        Task<Users> Edit(Users user);
-        Task<Users?> Details(Guid id);
+        Task<UsersDto?> FindApiCredentials(CredentialDto credential);
+        Task<IList<UsersDto>> Get();
+        Task<UsersDto> Create(UsersDto user);
+        Task<UsersDto> Edit(UsersDto user);
+        Task<UsersDto?> Details(Guid id);
         Task<bool> Delete(Guid id);
-        Task<bool> Delete(Users user);
+        Task<bool> Delete(UsersDto user);
     }
 }

@@ -1,25 +1,32 @@
-﻿using ApiSample.Data.Models;
-using ApiSample.Data.Repositories.Interfaces;
+﻿using ApiSample.Data.Repositories.Interfaces;
+using ApiSample.Helpers;
 using ApiSample.Services.Dto;
+using ApiSample.Services.Dto.Validations;
 using ApiSample.Services.Interfaces;
 using AutoMapper;
+using Microsoft.Extensions.Options;
 
 namespace ApiSample.Services
 {
     public class UsersService : Service<UsersService>, IUsersService
     {
         private readonly IUsersRepository UsersRepository;
+        private readonly IMapper _mapper;
+        private string Key { get; set; }
 
         public UsersService(INotifier notifier,
             ILogger<UsersService> logger,
             IMapper mapper,
+            IOptions<AppSettingsMap> appSettings,
             IUsersRepository usersRepository)
             : base(notifier, logger, mapper)
         {
             UsersRepository = usersRepository;
+            _mapper = mapper;
+            Key = appSettings.Value?.CryptoKey ?? string.Empty;
         }
 
-        public Task<Users> Create(Users user)
+        public Task<UsersDto> Create(UsersDto user)
         {
             throw new NotImplementedException();
         }
@@ -29,27 +36,48 @@ namespace ApiSample.Services
             throw new NotImplementedException();
         }
 
-        public Task<bool> Delete(Users user)
+        public Task<bool> Delete(UsersDto user)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Users?> Details(Guid id)
+        public Task<UsersDto?> Details(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Users> Edit(Users user)
+        public Task<UsersDto> Edit(UsersDto user)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Users> FindApiCredentials(CredentialDto credential)
+        public async Task<UsersDto?> FindApiCredentials(CredentialDto credential)
         {
-            throw new NotImplementedException();
+            if (credential == null)
+            {
+                Notify("Credentials cannot be null");
+                return null;
+            }
+
+            if (!ValidateModel(new CredentialValidation(), credential))
+                return null;
+
+
+            var result = await UsersRepository.FindApiCredentials(credential);
+
+            try
+            {
+                var map = _mapper.Map<UsersDto>(result);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+            return null;
         }
 
-        public Task<IList<Users>> Get()
+        public Task<IList<UsersDto>> Get()
         {
             throw new NotImplementedException();
         }

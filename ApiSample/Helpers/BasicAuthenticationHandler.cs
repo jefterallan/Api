@@ -13,6 +13,11 @@ namespace ApiSample.Helpers
 {
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
+        private const string MISSINGHEADER = "Missing Authorization Header";
+        private const string INVALIDAUTHORIZATION = "Invalid Authorization Header";
+        private const string INVALIDCREDENTIAL = "Invalid Username or Password";
+        private const string KEY = "Authorization";
+
         private readonly IUsersService UserService;
         
         public BasicAuthenticationHandler(
@@ -33,14 +38,17 @@ namespace ApiSample.Helpers
             if (endpoint?.Metadata?.GetMetadata<IAllowAnonymous>() != null)
                 return AuthenticateResult.NoResult();
 
-            if (!Request.Headers.ContainsKey("Authorization"))
-                return AuthenticateResult.Fail("Missing Authorization Header");
+            if (!Request.Headers.ContainsKey(KEY))
+            {
+                Logger.LogError(MISSINGHEADER);
+                return AuthenticateResult.Fail(MISSINGHEADER);
+            }
             
-            Users user;
+            Users? user;
 
             try
             {
-                var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authoriation"]);
+                var authHeader = AuthenticationHeaderValue.Parse(Request.Headers[KEY]);
                 var credentialsBytes = Convert.FromBase64String(authHeader.Parameter ?? string.Empty);
                 var credentials = Encoding.UTF8.GetString(credentialsBytes).Split(new[] { ':' }, 2);
                 var username = credentials.FirstOrDefault() ?? string.Empty;
@@ -51,11 +59,15 @@ namespace ApiSample.Helpers
             }
             catch (Exception)
             {
-                return AuthenticateResult.Fail("Invalid Authorization Header");
+                Logger.LogError(INVALIDAUTHORIZATION);
+                return AuthenticateResult.Fail(INVALIDAUTHORIZATION);
             }
 
             if (user == null)
-                return AuthenticateResult.Fail("Invalid Username or Password");
+            {
+                Logger.LogError(INVALIDCREDENTIAL);
+                return AuthenticateResult.Fail(INVALIDCREDENTIAL);
+            }
 
             var claims = new[]
             {

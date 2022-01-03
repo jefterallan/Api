@@ -2,8 +2,8 @@
 {
     public class ProductPrices : Model
     {
-        public Products Product { get; set;}
-        public Prices Price { get; set;}
+        public virtual Products Product { get; set;}
+        public virtual Prices Price { get; set;}
 
         public ProductPrices()
         {

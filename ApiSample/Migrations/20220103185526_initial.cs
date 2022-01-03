@@ -151,7 +151,7 @@ namespace ApiSample.Migrations
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Number = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    State = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    State = table.Column<int>(type: "int", nullable: false),
                     PostalCode = table.Column<int>(type: "int", nullable: false),
                     Complement = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClientId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
@@ -263,8 +263,8 @@ namespace ApiSample.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Amount = table.Column<int>(type: "int", nullable: false),
                     BrandId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    InvoiceId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    InvoicesId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    OrdersId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Active = table.Column<bool>(type: "bit", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -278,13 +278,13 @@ namespace ApiSample.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Products_Invoices_InvoiceId",
-                        column: x => x.InvoiceId,
+                        name: "FK_Products_Invoices_InvoicesId",
+                        column: x => x.InvoicesId,
                         principalTable: "Invoices",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Products_Orders_OrderId",
-                        column: x => x.OrderId,
+                        name: "FK_Products_Orders_OrdersId",
+                        column: x => x.OrdersId,
                         principalTable: "Orders",
                         principalColumn: "Id");
                 });
@@ -362,14 +362,14 @@ namespace ApiSample.Migrations
                 column: "BrandId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_InvoiceId",
+                name: "IX_Products_InvoicesId",
                 table: "Products",
-                column: "InvoiceId");
+                column: "InvoicesId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_OrderId",
+                name: "IX_Products_OrdersId",
                 table: "Products",
-                column: "OrderId");
+                column: "OrdersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_GroupId",

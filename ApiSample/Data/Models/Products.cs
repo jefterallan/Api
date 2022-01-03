@@ -6,8 +6,8 @@
         public string Description { get; set; }
         public int Amount { get; set; }
 
-        public Brands Brand { get; set; }
-        public ICollection<ProductPrices> ProductPrice { get; set; }
+        public virtual Brands Brand { get; set; }
+        public virtual ICollection<ProductPrices> ProductPrice { get; set; }
 
         public Products()
         {

@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ApiSample.Controllers.v1
 {
-    [ApiController]
     [ApiVersion("1")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [Produces("application/json")]
@@ -27,6 +26,11 @@ namespace ApiSample.Controllers.v1
         // GET: api/<AddressesController>
         [HttpGet]
         [Route("Get")]
+        [Authorize(Roles = "admin")]
+        //[AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<IList<AddressesDto>>> Get()
         {
             var result = await AddressesService.Get();

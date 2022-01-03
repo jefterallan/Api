@@ -1,10 +1,12 @@
 ﻿using ApiSample.Services.Dto;
 using ApiSample.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace ApiSample.Controllers.v1
 {
+    [Authorize]
     [ApiController]
     public abstract class ControllerMain : ControllerBase
     {

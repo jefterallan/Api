@@ -14,8 +14,8 @@ namespace ApiSample.Data.Models
         public int PostalCode { get; set; }
         public string? Complement { get; set; }
 
-        public Clients? Client { get; set; }
-        public Providers? Provider { get; set; }
+        public virtual Clients? Client { get; set; }
+        public virtual Providers? Provider { get; set; }
 
         public Addresses()
         {

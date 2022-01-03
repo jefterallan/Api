@@ -4,7 +4,7 @@
     {
         public string Description { get; set; }
 
-        public ICollection<Products>? Products { get; set; }
+        public virtual ICollection<Products>? Products { get; set; }
 
         public Brands()
         {

@@ -4,7 +4,7 @@
     {
         public string Name { get; set; }
 
-        public Groups Group { get; set; }
+        public virtual Groups Group { get; set; }
 
         public Users()
         {
