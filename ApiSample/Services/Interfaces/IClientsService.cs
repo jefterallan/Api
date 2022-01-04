@@ -1,14 +1,8 @@
-﻿using ApiSample.Data.Models;
+﻿using ApiSample.Services.Dto;
 
 namespace ApiSample.Services.Interfaces
 {
-    public interface IClientsService
+    public interface IClientsService : IService<ClientsDto>
     {
-        Task<IList<Clients>> Get();
-        Task<Clients> Create(Clients client);
-        Task<Clients> Edit(Clients client);
-        Task<Clients?> Details(Guid id);
-        Task<bool> Delete(Guid id);
-        Task<bool> Delete(Clients client);
     }
 }

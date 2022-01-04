@@ -7,7 +7,6 @@ namespace ApiSample.Controllers.v1
 {
     [ApiVersion("1")]
     [Route("api/v{version:apiVersion}/[controller]")]
-    [Produces("application/json")]
     public class AddressesController : ControllerMain
     {
         private readonly IAddressesService AddressesService;
@@ -31,6 +30,7 @@ namespace ApiSample.Controllers.v1
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<ActionResult<IList<AddressesDto>>> Get()
         {
             var result = await AddressesService.Get();
@@ -49,6 +49,7 @@ namespace ApiSample.Controllers.v1
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<ActionResult<AddressesDto>> Details(Guid id)
         {
             var result = await AddressesService.Details(id);
@@ -67,12 +68,15 @@ namespace ApiSample.Controllers.v1
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<ActionResult<AddressesDto>> Create(AddressesDto addresses)
         {
             if (!ModelState.IsValid)
                 return CustomResponse(ModelState);
 
-            throw new NotImplementedException();
+            var result = await AddressesService.Create(addresses);
+
+            return CustomResponse(result);
         }
 
         /// <summary>
@@ -86,9 +90,15 @@ namespace ApiSample.Controllers.v1
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<ActionResult<AddressesDto>> Edit(AddressesDto addresses)
         {
-            throw new NotImplementedException();
+            if (!ModelState.IsValid)
+                return CustomResponse(ModelState);
+
+            var result = await AddressesService.Edit(addresses);
+
+            return CustomResponse(result);
         }
 
         /// <summary>
@@ -102,9 +112,12 @@ namespace ApiSample.Controllers.v1
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<ActionResult<bool>> Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var result = await AddressesService.Delete(id);
+
+            return CustomResponse(result);
         }
     }
 }

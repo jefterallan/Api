@@ -2,13 +2,7 @@
 
 namespace ApiSample.Data.Repositories.Interfaces
 {
-    public interface IOrdersRepository
+    public interface IOrdersRepository : IRepository<Orders>
     {
-        Task<IList<Orders>> Get();
-        Task<Orders> Create(Orders entity);
-        Task<Orders> Edit(Orders entity);
-        Task<Orders?> Details(Guid id);
-        Task<bool> Delete(Guid id);
-        Task<bool> Delete(Orders entity);
     }
 }

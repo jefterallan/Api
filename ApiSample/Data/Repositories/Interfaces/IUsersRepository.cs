@@ -2,14 +2,8 @@
 
 namespace ApiSample.Data.Repositories.Interfaces
 {
-    public interface IUsersRepository
+    public interface IUsersRepository : IRepository<Users>
     {
-        Task<IList<Users>> Get();
-        Task<Users> Create(Users entity);
-        Task<Users> Edit(Users entity);
-        Task<Users?> Details(Guid id);
-        Task<bool> Delete(Guid id);
-        Task<bool> Delete(Users entity);
         Task<Users?> FindApiCredentials(Credential credential);
     }
 }

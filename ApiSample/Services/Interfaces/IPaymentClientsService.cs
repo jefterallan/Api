@@ -1,14 +1,8 @@
-﻿using ApiSample.Data.Models;
+﻿using ApiSample.Services.Dto;
 
 namespace ApiSample.Services.Interfaces
 {
-    public interface IPaymentClientsService
+    public interface IPaymentClientsService : IService<PaymentClientsDto>
     {
-        Task<IList<PaymentClients>> Get();
-        Task<PaymentClients> Create(PaymentClients paymentClient);
-        Task<PaymentClients> Edit(PaymentClients paymentClient);
-        Task<PaymentClients?> Details(Guid id);
-        Task<bool> Delete(Guid id);
-        Task<bool> Delete(PaymentClients paymentClient);
     }
 }

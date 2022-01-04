@@ -1,5 +1,4 @@
-﻿using ApiSample.Data.Models;
-using ApiSample.Data.Repositories.Interfaces;
+﻿using ApiSample.Data.Repositories.Interfaces;
 using ApiSample.Services.Dto;
 using ApiSample.Services.Interfaces;
 using AutoMapper;
@@ -19,17 +18,17 @@ namespace ApiSample.Services
             AddressesRepository = addressesRepository;
         }
 
-        public Task<AddressesDto> Create(AddressesDto address)
+        public async Task<AddressesDto> Create(AddressesDto address)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> Delete(Guid id)
+        public async Task<bool> Delete(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> Delete(AddressesDto address)
+        public async Task<bool> Delete(AddressesDto address)
         {
             throw new NotImplementedException();
         }
@@ -41,7 +40,7 @@ namespace ApiSample.Services
             return Mapper.Map<AddressesDto>(result);
         }
 
-        public Task<AddressesDto> Edit(AddressesDto address)
+        public async Task<AddressesDto> Edit(AddressesDto address)
         {
             throw new NotImplementedException();
         }

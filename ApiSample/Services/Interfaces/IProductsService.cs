@@ -1,14 +1,8 @@
-﻿using ApiSample.Data.Models;
+﻿using ApiSample.Services.Dto;
 
 namespace ApiSample.Services.Interfaces
 {
-    public interface IProductsService
+    public interface IProductsService : IService<ProductsDto>
     {
-        Task<IList<Products>> Get();
-        Task<Products> Create(Products product);
-        Task<Products> Edit(Products product);
-        Task<Products?> Details(Guid id);
-        Task<bool> Delete(Guid id);
-        Task<bool> Delete(Products product);
     }
 }

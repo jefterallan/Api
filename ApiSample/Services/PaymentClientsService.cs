@@ -1,5 +1,5 @@
-﻿using ApiSample.Data.Models;
-using ApiSample.Data.Repositories.Interfaces;
+﻿using ApiSample.Data.Repositories.Interfaces;
+using ApiSample.Services.Dto;
 using ApiSample.Services.Interfaces;
 using AutoMapper;
 
@@ -18,32 +18,27 @@ namespace ApiSample.Services
             PaymentClientsRepository = paymentClientsRepository;
         }
 
-        public Task<PaymentClients> Create(PaymentClients paymentClient)
+        public async Task<PaymentClientsDto> Create(PaymentClientsDto paymentClient)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> Delete(Guid id)
+        public async Task<bool> Delete(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> Delete(PaymentClients paymentClient)
+        public async Task<PaymentClientsDto?> Details(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<PaymentClients?> Details(Guid id)
+        public async Task<PaymentClientsDto> Edit(PaymentClientsDto paymentClient)
         {
             throw new NotImplementedException();
         }
 
-        public Task<PaymentClients> Edit(PaymentClients paymentClient)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IList<PaymentClients>> Get()
+        public async Task<IList<PaymentClientsDto>> Get()
         {
             throw new NotImplementedException();
         }

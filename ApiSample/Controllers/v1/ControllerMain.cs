@@ -8,6 +8,7 @@ namespace ApiSample.Controllers.v1
 {
     [Authorize]
     [ApiController]
+    [Produces("application/json")]
     public abstract class ControllerMain : ControllerBase
     {
         private readonly INotifier _notifier;
