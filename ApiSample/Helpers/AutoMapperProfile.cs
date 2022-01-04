@@ -8,9 +8,11 @@ namespace ApiSample.Helpers
     {
         public AutoMapperProfile()
         {
-            CreateMap<Model, ModelDto>();
-            CreateMap<Credential, CredentialDto>();
-            //CreateMap<Addresses, AddressesDto>();
+
+            CreateMap<Groups, GroupsDto>();
+            CreateMap<Users, UsersDto>()
+                .ForMember(g => g.Group, map => map.MapFrom(m => m.Group));
+            CreateMap<Addresses, AddressesDto>();
             //CreateMap<Brands, BrandsDto>();
             //CreateMap<Clients, ClientsDto>();
             //CreateMap<Groups, GroupsDto>();
@@ -22,17 +24,6 @@ namespace ApiSample.Helpers
             //CreateMap<ProductPrices, ProductPricesDto>();
             //CreateMap<Products, ProductsDto>();
             //CreateMap<Providers, ProvidersDto>();
-
-            //CreateMap<Groups, GroupsDto>()
-            //    .ForMember(u => u.Users, m => m.MapFrom(a => a.Users));
-
-            CreateMap<Users, UsersDto>()
-                .ForMember(u => u.Group, m => m.MapFrom(a => a.Group));
-
-            //CreateMap<GroupsDto, Groups>();
-            //CreateMap<UsersDto, Users>();
-            //CreateMap<CredentialDto, Credential>();
-            //CreateMap<ModelDto, Model>();
 
         }
     }

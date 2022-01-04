@@ -44,7 +44,7 @@ namespace ApiSample.Helpers
                 return AuthenticateResult.Fail(MISSINGHEADER);
             }
             
-            Users? user;
+            UsersDto? user;
 
             try
             {
@@ -73,7 +73,7 @@ namespace ApiSample.Helpers
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Name),
-                new Claim(ClaimTypes.Role, user.Group.ToString())
+                new Claim(ClaimTypes.Role, user.Group.Name)
             };
 
             var identity = new ClaimsIdentity(claims, Scheme.Name);

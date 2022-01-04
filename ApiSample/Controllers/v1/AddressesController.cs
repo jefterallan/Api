@@ -26,7 +26,7 @@ namespace ApiSample.Controllers.v1
         // GET: api/<AddressesController>
         [HttpGet]
         [Route("Get")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin")]
         //[AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

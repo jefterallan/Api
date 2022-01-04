@@ -62,19 +62,11 @@ namespace ApiSample.Services
             if (!ValidateModel(new CredentialValidation(), credential))
                 return null;
 
+            //password encrypt
 
             var result = await UsersRepository.FindApiCredentials(credential);
 
-            try
-            {
-                var map = _mapper.Map<UsersDto>(result);
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-
-            return null;
+            return Mapper.Map<UsersDto>(result);
         }
 
         public Task<IList<UsersDto>> Get()

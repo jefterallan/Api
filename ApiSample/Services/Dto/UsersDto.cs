@@ -2,7 +2,7 @@
 
 namespace ApiSample.Services.Dto
 {
-    public class UsersDto : CredentialDto
+    public class UsersDto : ModelDto
     {
         public string Name { get; set; }
         public GroupsDto Group { get; set; }
@@ -29,7 +29,6 @@ namespace ApiSample.Services.Dto
         }
 
         public UsersDto(string name, GroupsDto group, string username, string password)
-            : base(username, password)
         {
             Name = name;
             Group = group;

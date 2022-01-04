@@ -9,7 +9,7 @@ namespace ApiSample.Configuration
         public static IServiceCollection AddApiConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDataConfiguration(configuration);
-            services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
+            services.AddAutoMapper(typeof(Program));
             services.Configure<AppSettingsMap>(configuration);
             services.AddControllers();
             services.AddHealthChecks();
