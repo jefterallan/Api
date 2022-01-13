@@ -6,17 +6,19 @@ using FluentValidation.Results;
 
 namespace ApiSample.Services
 {
-    public abstract class Service<T> where T : class
+    public abstract class Service
     {
-        private readonly INotifier Notifier;
-        protected ILogger<T> Logger { get; set; }
+        protected ILogger Logger { get; set; }
         protected IMapper Mapper { get; set; }
+        private readonly INotifier Notifier;
 
-        protected Service(INotifier notifier, ILogger<T> logger, IMapper mapper)
+        protected Service(ILogger logger,
+            IMapper mapper,
+            INotifier notifier)
         {
-            Notifier = notifier;
             Logger = logger;
             Mapper = mapper;
+            Notifier = notifier;
         }
 
         protected void Notify(ValidationResult validationResult)

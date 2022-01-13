@@ -5,15 +5,15 @@ using AutoMapper;
 
 namespace ApiSample.Services
 {
-    public class ProvidersService : Service<ProvidersService>, IProvidersService
+    public class ProvidersService : Service, IProvidersService
     {
         private readonly IProvidersRepository ProvidersRepository;
 
-        public ProvidersService(INotifier notifier,
-            ILogger<ProvidersService> logger,
+        public ProvidersService(ILogger<ProvidersService> logger,
             IMapper mapper,
+            INotifier notifier,
             IProvidersRepository providersRepository)
-            : base(notifier, logger, mapper)
+            : base(logger, mapper, notifier)
         {
             ProvidersRepository = providersRepository;
         }

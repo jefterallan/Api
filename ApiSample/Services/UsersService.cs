@@ -1,57 +1,24 @@
 ﻿using ApiSample.Data.Repositories.Interfaces;
-using ApiSample.Helpers;
 using ApiSample.Services.Dto;
 using ApiSample.Services.Dto.Validations;
 using ApiSample.Services.Interfaces;
 using AutoMapper;
-using Microsoft.Extensions.Options;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace ApiSample.Services
 {
-    public class UsersService : Service<UsersService>, IUsersService
+    public class UsersService : Service, IUsersService
     {
         private readonly IUsersRepository UsersRepository;
-        private string Key { get; set; }
 
-        public UsersService(INotifier notifier,
-            ILogger<UsersService> logger,
+        public UsersService(ILogger<UsersService> logger,
             IMapper mapper,
-            IOptions<AppSettingsMap> appSettings,
+            INotifier notifier,
             IUsersRepository usersRepository)
-            : base(notifier, logger, mapper)
+            : base(logger, mapper, notifier)
         {
             UsersRepository = usersRepository;
-            Key = appSettings.Value?.CryptoKey ?? string.Empty;
-        }
-
-        public Task<UsersDto> Create(UsersDto user)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> Delete(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> Delete(UsersDto user)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<UsersDto?> Details(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<UsersDto> Edit(UsersDto user)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IList<UsersDto>> Get()
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<UsersDto?> FindApiCredentials(CredentialDto credential)
@@ -65,11 +32,47 @@ namespace ApiSample.Services
             if (!ValidateModel(new CredentialValidation(), credential))
                 return null;
 
-            //password encrypt
+            credential.Password = CryptoPassword(credential.Password);
 
             var result = await UsersRepository.FindApiCredentials(credential);
 
             return Mapper.Map<UsersDto>(result);
+        }
+
+        public async Task<IList<UsersDto>> Get()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<UsersDto> Create(UsersDto model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<UsersDto> Edit(UsersDto model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<UsersDto?> Details(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<bool> Delete(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static string CryptoPassword(string data)
+        {
+            var message = Encoding.UTF8.GetBytes(data);
+
+            using var alg = SHA512.Create();
+
+            var hashValue = alg.ComputeHash(message);
+
+            return hashValue.Aggregate("", (current, x) => current + $"{x:x2}");
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Security.Cryptography;
 
 namespace ApiSample.Helpers
 {
+    [Obsolete("Replaced by the SHA512.Create()")]
     public static class AesCryptoEngine
     {
         private static byte[]? Key { get; set; }
@@ -20,7 +21,7 @@ namespace ApiSample.Helpers
             {
                 try
                 {
-                    ICryptoTransform cryptoTransform = aesCryptoServiceProvider.CreateEncryptor(Key, Iv);
+                    ICryptoTransform cryptoTransform = aesCryptoServiceProvider.CreateEncryptor(Key ?? Array.Empty<byte>(), Iv);
                     aesCryptoServiceProvider.Padding = PaddingMode.None;
 
                     using MemoryStream memoryStream = new();
@@ -54,7 +55,7 @@ namespace ApiSample.Helpers
             {
                 try
                 {
-                    ICryptoTransform cryptoTransform = aesCryptoServiceProvider.CreateEncryptor(Key, Iv);
+                    ICryptoTransform cryptoTransform = aesCryptoServiceProvider.CreateEncryptor(Key ?? Array.Empty<byte>(), Iv);
                     aesCryptoServiceProvider.Padding = PaddingMode.None;
                     valueDecrypted = Convert.FromBase64String(Value);
 
