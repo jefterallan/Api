@@ -57,7 +57,7 @@ namespace ApiSample.Helpers
                 {
                     ICryptoTransform cryptoTransform = aesCryptoServiceProvider.CreateEncryptor(Key ?? Array.Empty<byte>(), Iv);
                     aesCryptoServiceProvider.Padding = PaddingMode.None;
-                    valueDecrypted = Convert.FromBase64String(Value);
+                    valueDecrypted = Convert.FromBase64String(Value ?? string.Empty);
 
                     using MemoryStream memoryStream = new();
                     using CryptoStream cryptoStream = new(memoryStream, cryptoTransform, CryptoStreamMode.Read);

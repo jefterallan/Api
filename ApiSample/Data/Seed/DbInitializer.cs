@@ -1,5 +1,6 @@
 ﻿using ApiSample.Data.Models;
 using ApiSample.Data.Models.Enum;
+using ApiSample.Helpers;
 
 namespace ApiSample.Data.Seed
 {
@@ -83,11 +84,11 @@ namespace ApiSample.Data.Seed
 
             var users = new Users[]
             {
-                new Users("Test1", group.First(), "test1", "test1"),
-                new Users("Test2", group.Take(2).Last(), "test2", "test2"),
-                new Users("Test3", group.Take(3).Last(), "test3", "test3"),
-                new Users("Test4", group.Take(4).Last(), "test4", "test4"),
-                new Users("Test5", group.Last(), "test5", "test5")
+                new Users("Test1", group.First(), "test1", SharedExtentions.EncryptSHA512("test1")),
+                new Users("Test2", group.Take(2).Last(), "test2", SharedExtentions.EncryptSHA512("test2")),
+                new Users("Test3", group.Take(3).Last(), "test3", SharedExtentions.EncryptSHA512("test3")),
+                new Users("Test4", group.Take(4).Last(), "test4", SharedExtentions.EncryptSHA512("test4")),
+                new Users("Test5", group.Last(), "test5", SharedExtentions.EncryptSHA512("test5"))
             };
 
             context.Users.AddRange(users);

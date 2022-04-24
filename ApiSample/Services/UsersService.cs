@@ -1,4 +1,5 @@
 ﻿using ApiSample.Data.Repositories.Interfaces;
+using ApiSample.Helpers;
 using ApiSample.Services.Dto;
 using ApiSample.Services.Dto.Validations;
 using ApiSample.Services.Interfaces;
@@ -32,7 +33,7 @@ namespace ApiSample.Services
             if (!ValidateModel(new CredentialValidation(), credential))
                 return null;
 
-            credential.Password = CryptoPassword(credential.Password);
+            credential.Password = SharedExtentions.EncryptSHA512(credential.Password);
 
             var result = await UsersRepository.FindApiCredentials(credential);
 
@@ -62,17 +63,6 @@ namespace ApiSample.Services
         public async Task<bool> Delete(Guid id)
         {
             throw new NotImplementedException();
-        }
-
-        private static string CryptoPassword(string data)
-        {
-            var message = Encoding.UTF8.GetBytes(data);
-
-            using var alg = SHA512.Create();
-
-            var hashValue = alg.ComputeHash(message);
-
-            return hashValue.Aggregate("", (current, x) => current + $"{x:x2}");
-        }
+        }        
     }
 }
